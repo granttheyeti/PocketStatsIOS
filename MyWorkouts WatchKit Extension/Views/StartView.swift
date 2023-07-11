@@ -10,7 +10,7 @@ import HealthKit
 
 struct StartView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-    var workoutTypes: [HKWorkoutActivityType] = [.cycling, .running, .walking]
+    var workoutTypes: [HKWorkoutActivityType] = [.basketball]
 
     var body: some View {
         List(workoutTypes) { workoutType in
@@ -19,7 +19,7 @@ struct StartView: View {
                 .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5))
         }
         .listStyle(.carousel)
-        .navigationBarTitle("Workouts")
+        .navigationBarTitle("Pocket Stats")
         .onAppear {
             workoutManager.requestAuthorization()
         }
@@ -39,12 +39,8 @@ extension HKWorkoutActivityType: Identifiable {
 
     var name: String {
         switch self {
-        case .running:
-            return "Run"
-        case .cycling:
-            return "Bike"
-        case .walking:
-            return "Walk"
+        case .basketball:
+            return "Session"
         default:
             return ""
         }
